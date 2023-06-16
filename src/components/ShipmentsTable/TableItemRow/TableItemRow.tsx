@@ -29,14 +29,13 @@ const TableItemRow = ({ item, handleSelectToDelete }: TableItemRowProps) => {
       <td>{item.consignee}</td>
       <td>
         <ButtonGroup>
-          <Link to={`/${item.orderNo}`}>
-            <Button
-              variant='primary'
-              className='px-2 py-1 me-2 rounded'
-              title='View Details'
-            >
-              <TbListDetails />
-            </Button>
+          <Link
+            role='button'
+            title='View Details'
+            className='btn btn-primary px-2 py-1 me-2 rounded'
+            to={`/${item.orderNo}`}
+          >
+            <TbListDetails />
           </Link>
           <Button
             variant='danger'
