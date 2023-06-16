@@ -79,11 +79,14 @@ const ShipmentDetails = () => {
 
   // v2. redirect
   useEffect(() => {
+    if (!id && !shipmentsData) return // wait until have data
+
+    // if not found shipment -> redirect
     if (!shipment && status === 'error') {
       toast.error('No matching shipment number')
       return navigate('/')
     }
-  }, [status, shipment, navigate])
+  }, [status, shipment, shipmentsData, navigate, id])
 
   // v1. redirect
   // if (!shipment && status === 'error') {

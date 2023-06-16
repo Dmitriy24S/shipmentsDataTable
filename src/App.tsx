@@ -51,26 +51,29 @@ function App() {
       <Navbar />
       <Toaster />
       <Container className='py-5 text-secondary'>
-        {status === 'loading' && <Loader />}
-        <Routes>
-          <Route
-            path='/'
-            element={
-              <Suspense>
-                <ShipmentsListPage />
-              </Suspense>
-            }
-          />
-          <Route
-            path='/:id'
-            element={
-              <Suspense>
-                <ShipmentDetailsPage />
-              </Suspense>
-            }
-          />
-          <Route path='*' element={<Navigate to='/' />} />
-        </Routes>
+        {status === 'loading' ? (
+          <Loader />
+        ) : (
+          <Routes>
+            <Route
+              path='/'
+              element={
+                <Suspense>
+                  <ShipmentsListPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path='/:id'
+              element={
+                <Suspense>
+                  <ShipmentDetailsPage />
+                </Suspense>
+              }
+            />
+            <Route path='*' element={<Navigate to='/' />} />
+          </Routes>
+        )}
       </Container>
     </>
   )
