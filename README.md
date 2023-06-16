@@ -1,4 +1,14 @@
-# Getting Started with Create React App
+# Shipments Table
+
+![Design preview for Shipments Table](./design-preview/design-preview.png)
+
+## Welcome
+
+Shipments Table. Created with React, SCSS, Bootstrap, Redux Toolkit, Redux Thunk, Reselect, axios, react-bootstrap, reactstrap, react-error-boundary, react-hot-toast, react-router, react-icons
+
+[Live Demo](https://shipments-data-table.vercel.app/) 👈
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
