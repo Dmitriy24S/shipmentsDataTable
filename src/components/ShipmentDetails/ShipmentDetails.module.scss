@@ -1,0 +1,19 @@
+.detailsCard {
+  color: #7b8799;
+  box-shadow: 0px 4px 9px 0px rgba(108, 165, 211, 0.33);
+
+  input {
+    padding: 0.7rem;
+    background-color: rgb(226 235 244);
+    &:focus {
+      background-color: rgb(226 235 244);
+    }
+    &::placeholder {
+      color: hsl(229, 12%, 56%);
+    }
+  }
+
+  .buttonsContainer {
+    min-height: 4rem; // prevents card height shift when buttons appear
+  }
+}

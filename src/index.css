@@ -1,0 +1,15 @@
+:root {
+  scrollbar-gutter: stable; /* prevents Toast notification position shift after bootstrap modal closes */
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  padding-right: 0 !important; /* prevents Toast notification position shift after bootstrap modal closes */
+}
+
+.pointer {
+  cursor: pointer;
+}

@@ -1,0 +1,15 @@
+.table {
+  max-width: 1400px;
+  margin: 0 auto;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.table > :not(caption) > * > * {
+  color: #7b8799;
+}
+
+.header th {
+  background-color: #f6f6f6;
+  text-transform: uppercase;
+}
