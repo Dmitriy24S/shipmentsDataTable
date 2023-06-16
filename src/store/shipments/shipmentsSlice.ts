@@ -29,6 +29,15 @@ export const shipmentsSlice = createSlice({
       const orderNo = action.payload
       state.shipments = state.shipments.filter((shipment) => shipment.orderNo !== orderNo)
     },
+    updateShipment: (state, action: PayloadAction<IShipmentsData>) => {
+      const updatedShipment = action.payload
+      state.shipments = state.shipments.map((shipment) => {
+        if (shipment.orderNo === updatedShipment.orderNo) {
+          return updatedShipment
+        }
+        return shipment
+      })
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchShipmentsData.pending, (state, action) => {
@@ -45,4 +54,4 @@ export const shipmentsSlice = createSlice({
   },
 })
 
-export const { deleteShipment } = shipmentsSlice.actions
+export const { deleteShipment, updateShipment } = shipmentsSlice.actions

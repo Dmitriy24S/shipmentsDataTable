@@ -6,21 +6,22 @@ import { IoCloseSharp } from 'react-icons/io5'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap'
 
-import { useAppSelector } from '../../store/hooks'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { IShipmentsData, Status } from '../../store/shipments/types'
 import { RootState } from '../../store/store'
 import Loader from '../Loader/Loader'
 
+import { updateShipment } from '../../store/shipments/shipmentsSlice'
 import styles from './ShipmentDetails.module.scss'
 
 // TODO: validate zod/yup form format, i.e. date?
 // TODO: Status input - Select dropdown for limited options?
 // TODO: debounce on change save form inputs vs save button?
-// TODO: dispatch update by id shipment details
 
 const ShipmentDetails = () => {
   const { id } = useParams()
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
   const shipmentsData = useAppSelector((state: RootState) => state.shipments.shipments)
   const [shipment, setShipment] = useState<IShipmentsData | null>(null)
   const [status, setStatus] = useState<Status>('idle')
@@ -57,7 +58,8 @@ const ShipmentDetails = () => {
 
   const handleConfirmChanges = () => {
     toast.success('Changes saved')
-    // TODO: dispatch update by id shipment details
+    dispatch(updateShipment(formState))
+    setDetailsChanged(false)
   }
 
   // Find shipment details
@@ -113,9 +115,9 @@ const ShipmentDetails = () => {
                   name='orderNo'
                   placeholder='e.g. zz-450581-1138559'
                   type='text'
-                  // defaultValue={shipment?.orderNo}
                   value={formState.orderNo}
-                  onChange={handleValueChange}
+                  disabled
+                  // onChange={handleValueChange} // keep id static -> update shipments by id?
                 />
               </FormGroup>
             </Col>
