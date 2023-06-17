@@ -7,17 +7,14 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap'
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { updateShipment } from '../../store/shipments/shipmentsSlice'
 import { IShipmentsData, Status } from '../../store/shipments/types'
 import { RootState } from '../../store/store'
 import Loader from '../Loader/Loader'
 
-import { updateShipment } from '../../store/shipments/shipmentsSlice'
-
 import styles from './ShipmentDetails.module.scss'
 
-// TODO: validate zod/yup form format, i.e. date?
-// TODO: Status input - Select dropdown for limited options?
-// TODO: debounce on change save form inputs vs save button?
+export const statusOptions = ['Shipped', 'In Transit', 'Delivered']
 
 const ShipmentDetails = () => {
   const { id } = useParams()
@@ -36,7 +33,9 @@ const ShipmentDetails = () => {
     status: shipment?.status || '',
   })
 
-  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleValueChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     if (!shipment) return
     const { name, value } = e.target
     setDetailsChanged(true)
@@ -178,18 +177,23 @@ const ShipmentDetails = () => {
                 />
               </FormGroup>
             </Col>
-            {/* // TODO: Status input - Select dropdown for limited options?  */}
             <Col md={6}>
               <FormGroup>
                 <Label for='status'>Status</Label>
                 <Input
+                  type='select'
                   id='status'
                   name='status'
-                  placeholder='e.g. In Transit'
-                  type='text'
-                  value={formState.status}
+                  aria-label='status'
                   onChange={handleValueChange}
-                />
+                  value={formState.status}
+                >
+                  {statusOptions.map((option) => (
+                    <option value={`'${option}'`} key={option}>
+                      {`'${option}'`}
+                    </option>
+                  ))}
+                </Input>
               </FormGroup>
             </Col>
           </Row>

@@ -13,6 +13,11 @@
     }
   }
 
+  select {
+    padding: 0.7rem;
+    background-color: rgb(226 235 244);
+  }
+
   .buttonsContainer {
     min-height: 4rem; // prevents card height shift when buttons appear
   }

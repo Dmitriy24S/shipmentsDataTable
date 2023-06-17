@@ -22,16 +22,9 @@ const ShipmentDetailsPage = React.lazy(
     )
 )
 
-// API:
-// https://my.api.mockaroo.com/shipments.json?key=5e0b62d0
-// { "error": "Free accounts are limited to 200 requests per day.  You can generate up to 1000000 records per day by upgrading to a Silver plan.  See http://www.mockaroo.com/api/docs for more information about usage limits." }
-
 // TODO: Details - validate zod/yup form format, i.e. date?
-// TODO: Details - Status input - Select dropdown for limited options?
-// TODO: Details - debounce on change save form inputs vs save button?
 // TODO: RTK Redux state make Normalized Data with ids?
 // TODO: redux tests + other tests
-// TODO: auto sort imports -> eslint?
 
 function App() {
   const dispatch = useAppDispatch()
