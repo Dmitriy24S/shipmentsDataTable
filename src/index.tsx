@@ -1,16 +1,20 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
-import { ErrorBoundary } from 'react-error-boundary'
+import { ErrorBoundary, FallbackProps } from 'react-error-boundary'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
 import App from './App'
-import ErrorPage from './pages/ErrorPage/ErrorPage'
 import reportWebVitals from './reportWebVitals'
 import { store } from './store/store'
 
 import './index.css'
+
+// import ErrorPage from './pages/ErrorPage/ErrorPage'
+const ErrorPage = React.lazy(
+  () => import(/* webpackChunkName: "ErrorPage" */ './pages/ErrorPage/ErrorPage')
+)
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
@@ -19,7 +23,14 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         <ErrorBoundary
-          FallbackComponent={ErrorPage}
+          FallbackComponent={(props: FallbackProps) => (
+            <Suspense>
+              <ErrorPage
+                error={props.error}
+                resetErrorBoundary={props.resetErrorBoundary}
+              />
+            </Suspense>
+          )}
           onError={() => console.log('Error happened!')}
         >
           <App />
