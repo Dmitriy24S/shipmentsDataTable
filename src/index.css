@@ -15,3 +15,14 @@ html {
   overflow-x: hidden !important;
   padding-right: 0 !important;
 }
+
+/* Tooltip */
+.tooltip {
+  bottom: 6px !important;
+}
+.tooltip-inner {
+  opacity: 0.8 !important;
+}
+.tooltip-arrow {
+  display: none !important;
+}
