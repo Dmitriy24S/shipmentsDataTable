@@ -1,4 +1,5 @@
 import { SortDirection } from '../filters/types'
+
 import { IShipmentsData } from './types'
 
 // Shipments Table sorting logic

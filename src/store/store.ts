@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+
 import { filtersSlice } from './filters/filtersSlice'
 import { shipmentsAPI } from './shipments/shipmentsAPI'
 import { shipmentsSlice } from './shipments/shipmentsSlice'

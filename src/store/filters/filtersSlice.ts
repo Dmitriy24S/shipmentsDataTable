@@ -1,6 +1,8 @@
-import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
+
 import { IFilterState, SortingType } from './types'
+
+import type { PayloadAction } from '@reduxjs/toolkit'
 
 const initialState: IFilterState = {
   activeSort: null,

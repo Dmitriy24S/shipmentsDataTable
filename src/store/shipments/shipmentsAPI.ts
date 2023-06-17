@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+
 import { IShipmentsData } from './types'
 
 export const shipmentsAPI = createApi({

@@ -1,5 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
+
 import localData from '../../data/data.json'
 
 import { IShipmentsData, IShipmentsState } from './types'

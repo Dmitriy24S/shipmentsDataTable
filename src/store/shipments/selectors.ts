@@ -1,4 +1,7 @@
 import { createSelector } from 'reselect'
+
+import { RootState } from '../store'
+
 import {
   sortShipmentsByConsignee,
   sortShipmentsByCustomer,
@@ -6,7 +9,6 @@ import {
   sortShipmentsByTrackingNo,
 } from './sortingUtils'
 
-import { RootState } from '../store'
 
 // Selectors
 export const selectShipments = (state: RootState) => state.shipments.shipments

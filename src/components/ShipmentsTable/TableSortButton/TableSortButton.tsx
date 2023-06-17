@@ -1,5 +1,6 @@
 import Button, { ButtonProps } from 'react-bootstrap/esm/Button'
 import { BiSortAlt2 } from 'react-icons/bi'
+
 import { SortingType } from '../../../store/filters/types'
 
 // interface SortButtonProps extends BsPrefixRefForwardingComponent<'button', ButtonProps> {  // ! type error?
