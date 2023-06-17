@@ -26,3 +26,8 @@ html {
 .tooltip-arrow {
   display: none !important;
 }
+
+/* Date Picker - Shipment Details */
+.react-datepicker-wrapper {
+  display: block !important; /* match other inputs on Details page */
+}

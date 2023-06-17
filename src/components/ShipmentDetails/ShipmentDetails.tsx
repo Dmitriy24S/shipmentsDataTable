@@ -1,5 +1,8 @@
+import format from 'date-fns/format'
 import { useEffect, useState } from 'react'
 import { Card } from 'react-bootstrap'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 import { toast } from 'react-hot-toast'
 import { IoMdCheckmark } from 'react-icons/io'
 import { IoCloseSharp } from 'react-icons/io5'
@@ -14,6 +17,10 @@ import Loader from '../Loader/Loader'
 
 import styles from './ShipmentDetails.module.scss'
 
+export interface IFormState extends IShipmentsData {
+  formattedDate: Date
+}
+
 export const statusOptions = ['Shipped', 'In Transit', 'Delivered']
 
 const ShipmentDetails = () => {
@@ -24,13 +31,14 @@ const ShipmentDetails = () => {
   const [shipment, setShipment] = useState<IShipmentsData | null>(null)
   const [status, setStatus] = useState<Status>('idle')
   const [detailsChanged, setDetailsChanged] = useState(false)
-  const [formState, setFormState] = useState<IShipmentsData>({
+  const [formState, setFormState] = useState<IFormState>({
     orderNo: shipment?.orderNo || '',
-    date: shipment?.date || '',
+    date: shipment?.date || format(new Date(), 'MM/dd/yyyy'), // Date in String format
     customer: shipment?.customer || '',
     trackingNo: shipment?.trackingNo || '',
     consignee: shipment?.consignee || '',
     status: shipment?.status || '',
+    formattedDate: shipment?.date ? new Date(shipment.date) : new Date(), // Date
   })
 
   const handleValueChange = (
@@ -49,16 +57,35 @@ const ShipmentDetails = () => {
     }))
   }
 
+  const handleDateChange = (date: Date | null, e: React.SyntheticEvent) => {
+    if (!date) return
+    setDetailsChanged(true)
+    // formState {..., date: "10/16/2019"}
+    // date Thu Oct 17 2019 00:00:00 GMT+0300 (Eastern European Summer Time)
+    const formattedDateToStr = format(date, 'MM/dd/yyyy') // 10/17/2019
+
+    setFormState((prevState) => ({
+      ...prevState,
+      date: formattedDateToStr,
+      formattedDate: date,
+    }))
+  }
+
   const handleCancelChanges = () => {
     setDetailsChanged(false)
     if (shipment) {
-      setFormState(shipment) // reset form to initial state before input changes
+      // reset form to initial state before input changes
+      setFormState({
+        ...shipment,
+        formattedDate: shipment?.date ? new Date(shipment.date) : new Date(),
+      })
     }
   }
 
   const handleConfirmChanges = () => {
     toast.success('Changes saved')
-    dispatch(updateShipment(formState))
+    const { formattedDate, ...shipmentData } = formState // exclude formattedDate in Date format, keep String format
+    dispatch(updateShipment(shipmentData))
     setDetailsChanged(false)
   }
 
@@ -71,8 +98,11 @@ const ShipmentDetails = () => {
 
     if (data) {
       setShipment(data)
-      // console.log('shipment data:', data)
-      setFormState(data)
+      // console.log('shipmentsData data:', data)
+      setFormState({
+        ...data,
+        formattedDate: data?.date ? new Date(data.date) : new Date(),
+      })
       setStatus('idle')
     } else {
       setStatus('error')
@@ -124,13 +154,15 @@ const ShipmentDetails = () => {
             <Col md={6}>
               <FormGroup>
                 <Label for='date'>Date</Label>
-                <Input
+                <DatePicker
                   id='date'
                   name='date'
-                  placeholder='e.g. 9/22/2019'
-                  type='text'
-                  value={formState.date}
-                  onChange={handleValueChange}
+                  autoComplete='off'
+                  placeholderText='e.g. 09/22/2019'
+                  dateFormat='MM/dd/yyyy'
+                  selected={formState.formattedDate}
+                  onChange={handleDateChange}
+                  className={`${styles.dateInput} focus-ring`}
                 />
               </FormGroup>
             </Col>

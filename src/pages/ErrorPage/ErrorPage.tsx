@@ -2,9 +2,7 @@ import { FallbackProps } from 'react-error-boundary'
 import { Button, Container } from 'reactstrap'
 
 const ErrorPage = (props: FallbackProps) => {
-  const { error, resetErrorBoundary } = props
-  console.log('ErrorPage - resetErrorBoundary:', resetErrorBoundary)
-  console.log('ErrorPage - error:', error)
+  const { resetErrorBoundary } = props
 
   return (
     <Container className='text-center pt-5'>

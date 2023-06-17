@@ -18,6 +18,18 @@
     background-color: rgb(226 235 244);
   }
 
+  .dateInput {
+    // match other bootstrap inputs
+    width: 100%;
+    background-color: rgb(226 235 244);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    border-radius: 0.375rem;
+    border: 1px solid #dee2e6;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
   .buttonsContainer {
     min-height: 4rem; // prevents card height shift when buttons appear
   }

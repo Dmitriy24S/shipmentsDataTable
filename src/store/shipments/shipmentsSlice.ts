@@ -9,8 +9,8 @@ export const fetchShipmentsData = createAsyncThunk(
   'shipments/fetchShipmentsData',
   async () => {
     const { data } = await axios.get<IShipmentsData[]>(
-      `temp`
-      // `${process.env.REACT_APP_API_URL}/shipments.json?key=5e0b62d0`
+      // `${process.env.REACT_APP_API_URL}}/dev`
+      `${process.env.REACT_APP_API_URL}/shipments.json?key=5e0b62d0`
     )
     console.log('fetchShipmentsData - thunk data:', data)
     return data
