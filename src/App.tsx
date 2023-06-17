@@ -22,9 +22,8 @@ const ShipmentDetailsPage = React.lazy(
     )
 )
 
-// TODO: Details - validate zod/yup form format, i.e. date?
-// TODO: RTK Redux state make Normalized Data with ids?
-// TODO: redux tests + other tests
+// TODO: Details - validate zod/yup form format, i.e. date input?
+// TODO: Redux - refactor normalized data state with createEntityAdapter?
 
 function App() {
   const dispatch = useAppDispatch()
@@ -35,9 +34,11 @@ function App() {
 
   // Thunk version
   useEffect(() => {
-    dispatch(fetchShipmentsData())
+    if (status === 'idle') {
+      dispatch(fetchShipmentsData())
+    }
     // throw new Error('I crashed!') // test Error Boundary
-  }, [dispatch])
+  }, [dispatch, status])
 
   return (
     <>

@@ -8,8 +8,9 @@ export interface IShipmentsData {
 }
 
 export interface IShipmentsState {
-  shipments: IShipmentsData[]
-  // status: 'idle' | 'loading' | 'error'
+  shipments: {
+    [orderNo: string]: IShipmentsData
+  }
   status: Status
 }
 

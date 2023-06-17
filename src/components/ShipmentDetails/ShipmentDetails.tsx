@@ -7,9 +7,9 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Button, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap'
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { selectShipments } from '../../store/shipments/selectors'
 import { updateShipment } from '../../store/shipments/shipmentsSlice'
 import { IShipmentsData, Status } from '../../store/shipments/types'
-import { RootState } from '../../store/store'
 import Loader from '../Loader/Loader'
 
 import styles from './ShipmentDetails.module.scss'
@@ -20,7 +20,7 @@ const ShipmentDetails = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const shipmentsData = useAppSelector((state: RootState) => state.shipments.shipments)
+  const shipmentsData = useAppSelector(selectShipments) // normalized data -> into array selector
   const [shipment, setShipment] = useState<IShipmentsData | null>(null)
   const [status, setStatus] = useState<Status>('idle')
   const [detailsChanged, setDetailsChanged] = useState(false)

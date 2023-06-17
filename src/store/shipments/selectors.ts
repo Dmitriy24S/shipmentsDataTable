@@ -11,17 +11,18 @@ import {
 
 
 // Selectors
-export const selectShipments = (state: RootState) => state.shipments.shipments
+// v1. Array state version
+// export const selectShipments = (state: RootState) => state.shipments.shipments
+// export const selectShipmentById = (state: RootState, shipmentId: string) => {
+// return selectShipments(state).find((shipment) => shipment.orderNo === shipmentId)
+// }
 
-export const selectShipmentById = (state: RootState, shipmentId: string) => {
-  return selectShipments(state).find((shipment) => shipment.orderNo === shipmentId)
-}
-
-// TODO: normalized data?
-// const selectShipmentsEntities = (state) => state.shipments.entities
-// export const selectShipments = createSelector(selectShipmentsEntities, (entities) =>
-//   Object.values(entities)
-// )
+// v2. Normalized data version
+export const selectShipmentsEntities = (state: RootState) => state.shipments.shipments
+export const selectShipments = createSelector(
+  selectShipmentsEntities,
+  (entities) => Object.values(entities) // normalized data -> into array selector
+)
 
 // Selectors memoized with reselect
 export const selectShipmentsIdsMemoized = createSelector(
