@@ -22,7 +22,6 @@ const ShipmentDetailsPage = React.lazy(
     )
 )
 
-// TODO: Details - validate zod/yup form format, i.e. date input?
 // TODO: Redux - refactor normalized data state with createEntityAdapter?
 
 function App() {
@@ -34,11 +33,9 @@ function App() {
 
   // Thunk version
   useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchShipmentsData())
-    }
+    dispatch(fetchShipmentsData())
     // throw new Error('I crashed!') // test Error Boundary
-  }, [dispatch, status])
+  }, [dispatch])
 
   return (
     <>

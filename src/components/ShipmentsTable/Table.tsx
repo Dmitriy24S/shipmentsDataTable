@@ -27,7 +27,7 @@ export interface IShipmentsData {
 const ShipmentsTable = () => {
   const dispatch = useAppDispatch()
   const sortingType = useAppSelector((state: RootState) => state.filters.activeSort)
-  const filteredData = useAppSelector(selectFilteredShipments) // ! empty logs?
+  const filteredData = useAppSelector(selectFilteredShipments)
   const [showModal, setShowModal] = useState(false)
   const [orderToDelete, setOrderToDelete] = useState<string | null>(null)
 
