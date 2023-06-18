@@ -3,6 +3,10 @@
   margin: 0 auto;
   border-radius: 5px;
   overflow: hidden;
+
+  tbody tr {
+    height: 71px; // make Table height more stable, prevent shifts when chaging Table pages (atleast on desktop)
+  }
 }
 
 .table > :not(caption) > * > * {

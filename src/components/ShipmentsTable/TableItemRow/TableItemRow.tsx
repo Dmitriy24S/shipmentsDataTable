@@ -5,7 +5,7 @@ import { TbListDetails } from 'react-icons/tb'
 import { Link } from 'react-router-dom'
 import { UncontrolledTooltip } from 'reactstrap'
 
-import { IShipmentsData } from '../Table'
+import { IShipmentsData } from '../../../store/shipments/types'
 
 import styles from './TableItemRow.module.scss'
 

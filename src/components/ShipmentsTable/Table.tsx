@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Table from 'react-bootstrap/Table'
 import { toast } from 'react-hot-toast'
+import { Pagination, PaginationItem, PaginationLink } from 'reactstrap'
 
 import { toggleSort } from '../../store/filters/filtersSlice'
 import { SortingType } from '../../store/filters/types'
@@ -14,15 +15,6 @@ import TableItemRow from './TableItemRow/TableItemRow'
 import SortButton from './TableSortButton/TableSortButton'
 
 import styles from './Table.module.scss'
-
-export interface IShipmentsData {
-  orderNo: string
-  date: string
-  customer: string
-  trackingNo: string
-  status: string
-  consignee: string
-}
 
 const ShipmentsTable = () => {
   const dispatch = useAppDispatch()
@@ -47,6 +39,30 @@ const ShipmentsTable = () => {
     setShowModal(false)
     setOrderToDelete(null) // reset
   }
+
+  // Pagination
+  const itemsPerPage = 10 // Number of items to display per page
+  const [currentPage, setCurrentPage] = useState(1)
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage)
+
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const currentItems = filteredData.slice(startIndex, endIndex)
+
+  const handlePageChange = (pageNumber: number) => {
+    if (pageNumber < 1) {
+      setCurrentPage(1) // Prevent going below the first page
+    } else if (pageNumber > totalPages) {
+      setCurrentPage(totalPages) // Prevent going above the last page
+    } else {
+      setCurrentPage(pageNumber)
+    }
+  }
+
+  // Scroll to top on Table page change
+  // useEffect(() => {
+  //   window.scrollTo({ top: 0 })
+  // }, [currentPage])
 
   return (
     <>
@@ -113,8 +129,15 @@ const ShipmentsTable = () => {
         </thead>
 
         <tbody>
-          {/* Filtered Thunk data */}
-          {filteredData?.map((item) => (
+          {/* Filtered + Paginated Thunk data */}
+          {!currentItems.length && (
+            <tr>
+              <td className='border-0'>
+                <h4>No items to display</h4>
+              </td>
+            </tr>
+          )}
+          {currentItems?.map((item) => (
             <TableItemRow
               key={item.orderNo}
               item={item}
@@ -123,6 +146,23 @@ const ShipmentsTable = () => {
           ))}
         </tbody>
       </Table>
+
+      <Pagination className='my-3 d-flex justify-content-center'>
+        {/* Prev */}
+        <PaginationItem>
+          <PaginationLink onClick={() => handlePageChange(currentPage - 1)} previous />
+        </PaginationItem>
+        {/* Pages */}
+        {Array.from({ length: totalPages }).map((_, index) => (
+          <PaginationItem key={index} active={index + 1 === currentPage}>
+            <PaginationLink onClick={() => handlePageChange(index + 1)}>
+              {index + 1}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
+        {/* Next */}
+        <PaginationLink onClick={() => handlePageChange(currentPage + 1)} next />
+      </Pagination>
 
       <ConfirmDeleteModal
         showModal={showModal}
@@ -141,35 +181,11 @@ export default ShipmentsTable
 // v1. Thunk data version
 // const status = useAppSelector((state) => state.shipments.status)
 // const shipmentsThunkData = useAppSelector((state) => state.shipments.shipments)
-// {shipmentsThunkData?.map */}
+// {shipmentsThunkData?.map
+
+// Filtered Thunk data
+// {filteredData?.map((item)
 
 // v2. RTK Query data version
 // const { data: shipmentsRTKQueryData, isLoading, error } = useGetShipmentsDataQuery()
 // {shipmentsRTKQueryData?.map
-
-// RTK Query || Thunk loading message
-// if (isLoading || status === 'loading') {
-//   return (
-//     <>
-//       <div>Loading...</div>
-//     </>
-//   )
-// }
-
-// RTK Query error message:
-// if (error) {
-//   if ('status' in error) {
-//     // you can access all properties of `FetchBaseQueryError` here
-//     const errMsg = 'error' in error ? error.error : JSON.stringify(error.data)
-
-//     return (
-//       <div>
-//         <div>An error has occurred:</div>
-//         <div>{errMsg}</div>
-//       </div>
-//     )
-//   } else {
-//     // you can access all properties of `SerializedError` here
-//     return <div>{error.message}</div>
-//   }
-// }
