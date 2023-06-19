@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@faker-js/faker": "^8.0.2",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -13,8 +14,9 @@
     "@types/react-dom": "^18.0.6",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
-    "chart.js": "4.3.0",
+    "chart.js": "^4.3.0",
     "date-fns": "^2.30.0",
+    "faker": "^6.6.6",
     "install": "^0.13.0",
     "npm": "^9.7.1",
     "perfect-scrollbar": "1.5.5",
@@ -43,7 +45,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!axios)/'",
+    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!axios)/' --watchAll=false --bail",
+    "test:watch": "react-scripts test --transformIgnorePatterns 'node_modules/(?!axios)/'",
     "eject": "react-scripts eject",
     "lint": "eslint -c .eslintrc --ext .js,.jsx,.tsx,.ts .",
     "lint:fix": "npm run lint -- --fix",

@@ -9,7 +9,6 @@ import {
   sortShipmentsByTrackingNo,
 } from './sortingUtils'
 
-
 // Selectors
 // v1. Array state version
 // export const selectShipments = (state: RootState) => state.shipments.shipments

@@ -12,7 +12,7 @@ export const fetchShipmentsData = createAsyncThunk(
       // `${process.env.REACT_APP_API_URL}}/dev`
       `${process.env.REACT_APP_API_URL}/shipments.json?key=5e0b62d0`
     )
-    console.log('fetchShipmentsData - thunk data:', data)
+    // console.log('fetchShipmentsData - thunk data:', data)
     return data
   }
 )

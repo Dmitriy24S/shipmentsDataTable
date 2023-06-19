@@ -114,6 +114,7 @@ const ShipmentDetails = () => {
     if (!id && !shipmentsData) return // wait until have data
 
     // if not found shipment -> redirect
+    // ! when fetched Data from API instead of offline data -> always redirects, because API provides random ids(?) and on reload no matching id in data
     if (!shipment && status === 'error') {
       toast.error('No matching shipment number')
       return navigate('/')
