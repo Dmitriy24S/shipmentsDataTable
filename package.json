@@ -43,10 +43,13 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!axios)/'",
     "eject": "react-scripts eject",
     "lint": "eslint -c .eslintrc --ext .js,.jsx,.tsx,.ts .",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "validate": "npm-run-all --parallel test lint",
+    "precommit": "npm run validate",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -71,6 +74,8 @@
     "@types/react-datepicker": "^4.11.2",
     "@types/react-router-bootstrap": "^0.26.0",
     "@types/react-router-dom": "^5.3.3",
-    "eslint-plugin-import": "^2.27.5"
+    "eslint-plugin-import": "^2.27.5",
+    "husky": "^8.0.0",
+    "npm-run-all": "^4.1.5"
   }
 }

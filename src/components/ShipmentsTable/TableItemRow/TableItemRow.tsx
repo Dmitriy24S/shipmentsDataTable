@@ -21,18 +21,19 @@ const TableItemRow = ({ item, handleSelectToDelete }: TableItemRowProps) => {
   // }
 
   return (
-    <tr className={styles.bodyRow}>
-      <td>{item.orderNo}</td>
+    <tr data-testid='shipment-row' className={styles.bodyRow}>
+      <td data-testid='orderNo'>{item.orderNo}</td>
       <td>{item.date}</td>
       <td>{item.customer}</td>
       <td>{item.trackingNo}</td>
       <td>{item.status}</td>
-      <td>{item.consignee}</td>
+      <td data-testid='consignee'>{item.consignee}</td>
       <td>
         <ButtonGroup>
           {/* View details link/button */}
           <Link
             role='button'
+            aria-label='View Details'
             title='View Details'
             id={`view-${item.orderNo}`}
             className='btn btn-primary px-2 py-1 me-2 rounded'
@@ -45,6 +46,7 @@ const TableItemRow = ({ item, handleSelectToDelete }: TableItemRowProps) => {
           </UncontrolledTooltip>
           {/* Delete button */}
           <Button
+            aria-label='Delete Shipment'
             id={`delete-${item.orderNo}`}
             variant='danger'
             className='px-2 py-1 rounded'

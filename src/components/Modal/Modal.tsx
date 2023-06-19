@@ -27,7 +27,7 @@ const ConfirmDeleteModal = ({
         <Button color='secondary' onClick={toggleModal}>
           Cancel
         </Button>
-        <Button color='danger' onClick={onConfirm}>
+        <Button aria-label='confirm delete' color='danger' onClick={onConfirm}>
           Delete
         </Button>
       </ModalFooter>
