@@ -70,7 +70,7 @@ const ShipmentsTable = () => {
         <thead className={styles.header}>
           <tr>
             <th className={`text-nowrap ${styles['width-200']}`}>Order No.</th>
-            <th className={`text-nowrap ${styles['width-120']}`}>Delivery Data</th>
+            <th className={`text-nowrap ${styles['width-120']}`}>Delivery Date</th>
             <th
               className={`text-nowrap pointer ${styles['width-200']}`}
               onClick={() => toggleTableSort('customer')}
@@ -127,7 +127,7 @@ const ShipmentsTable = () => {
                 }}
               />
             </th>
-            <th className={styles['width-120']}>{/* Actions / Buttons column */}</th>
+            <th className={styles['width-80']}>{/* Actions / Buttons column */}</th>
           </tr>
         </thead>
 

@@ -18,7 +18,7 @@ const SortButton = ({ sortingType, sortTypeName, ...restProps }: SortButtonProps
       title={`Sort by ${sortTypeName}`}
       {...restProps}
     >
-      <BiSortAlt2 opacity={isSortingActive ? 1 : 0.3} className='my-1' />
+      <BiSortAlt2 opacity={isSortingActive ? 1 : 0.3} className='mb-1' />
     </Button>
   )
 }

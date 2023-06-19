@@ -76,7 +76,7 @@ test('renders Table with no data', () => {
       </BrowserRouter>
     </Provider>
   )
-  const tableHeaderText = screen.getByText(/Delivery Data/i)
+  const tableHeaderText = screen.getByText(/Delivery Date/i)
   expect(tableHeaderText).toBeInTheDocument()
 
   const noDataText = screen.getByText(/No items to display/i)
