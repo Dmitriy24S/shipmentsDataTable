@@ -4,6 +4,14 @@
   border-radius: 5px;
   overflow: hidden;
 
+  .width-120 {
+    width: 120px; // reduce table column shifts when toggling sort
+  }
+
+  .width-200 {
+    width: 200px; // reduce table column shifts when toggling sort
+  }
+
   tbody tr {
     height: 71px; // make Table height more stable, prevent shifts when chaging Table pages (atleast on desktop)
   }

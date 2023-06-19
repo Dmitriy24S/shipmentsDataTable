@@ -69,10 +69,10 @@ const ShipmentsTable = () => {
       <Table responsive className={styles.table}>
         <thead className={styles.header}>
           <tr>
-            <th className='text-nowrap'>Order No.</th>
-            <th className='text-nowrap'>Delivery Data</th>
+            <th className={`text-nowrap ${styles['width-200']}`}>Order No.</th>
+            <th className={`text-nowrap ${styles['width-120']}`}>Delivery Data</th>
             <th
-              className='text-nowrap pointer'
+              className={`text-nowrap pointer ${styles['width-200']}`}
               onClick={() => toggleTableSort('customer')}
             >
               Customer
@@ -86,7 +86,7 @@ const ShipmentsTable = () => {
               />
             </th>
             <th
-              className='text-nowrap pointer'
+              className={`text-nowrap pointer ${styles['width-200']}`}
               onClick={() => toggleTableSort('trackingNo')}
             >
               Tracking No.
@@ -99,7 +99,10 @@ const ShipmentsTable = () => {
                 }}
               />
             </th>
-            <th className='text-nowrap pointer' onClick={() => toggleTableSort('status')}>
+            <th
+              className={`text-nowrap pointer ${styles['width-120']}`}
+              onClick={() => toggleTableSort('status')}
+            >
               Status
               <SortButton
                 sortingType={sortingType}
@@ -111,7 +114,7 @@ const ShipmentsTable = () => {
               />
             </th>
             <th
-              className='text-nowrap pointer'
+              className={`text-nowrap pointer ${styles['width-200']}`}
               onClick={() => toggleTableSort('consignee')}
             >
               Consignee
@@ -124,7 +127,7 @@ const ShipmentsTable = () => {
                 }}
               />
             </th>
-            <th>{/* Actions / Buttons column */}</th>
+            <th className={styles['width-120']}>{/* Actions / Buttons column */}</th>
           </tr>
         </thead>
 
