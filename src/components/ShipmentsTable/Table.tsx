@@ -66,91 +66,99 @@ const ShipmentsTable = () => {
 
   return (
     <>
-      <Table responsive className={styles.table}>
-        <thead className={styles.header}>
-          <tr>
-            <th className={`text-nowrap ${styles['width-200']}`}>Order No.</th>
-            <th className={`text-nowrap ${styles['width-120']}`}>Delivery Date</th>
-            <th
-              className={`text-nowrap pointer ${styles['width-200']}`}
-              onClick={() => toggleTableSort('customer')}
-            >
-              Customer
-              <SortButton
-                sortingType={sortingType}
-                sortTypeName={'customer'}
-                onClick={(e) => {
-                  e.stopPropagation() // Prevents the click event from propagating to the parent element
-                  toggleTableSort('customer')
-                }}
-              />
-            </th>
-            <th
-              className={`text-nowrap pointer ${styles['width-200']}`}
-              onClick={() => toggleTableSort('trackingNo')}
-            >
-              Tracking No.
-              <SortButton
-                sortingType={sortingType}
-                sortTypeName={'trackingNo'}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  toggleTableSort('trackingNo')
-                }}
-              />
-            </th>
-            <th
-              className={`text-nowrap pointer ${styles['width-80']}`}
-              onClick={() => toggleTableSort('status')}
-            >
-              Status
-              <SortButton
-                sortingType={sortingType}
-                sortTypeName={'status'}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  toggleTableSort('status')
-                }}
-              />
-            </th>
-            <th
-              className={`text-nowrap pointer ${styles['width-200']}`}
-              onClick={() => toggleTableSort('consignee')}
-            >
-              Consignee
-              <SortButton
-                sortingType={sortingType}
-                sortTypeName={'consignee'}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  toggleTableSort('consignee')
-                }}
-              />
-            </th>
-            <th className={styles['width-80']}>{/* Actions / Buttons column */}</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {/* Filtered + Paginated Thunk data */}
-          {!currentItems.length && (
+      <TableDataContainer dataLength={currentItems.length}>
+        <Table responsive className={styles.table}>
+          <thead className={styles.header}>
             <tr>
-              <td className='border-0'>
-                <h4>No items to display</h4>
-              </td>
+              <th className={`text-nowrap ${styles['width-200']}`}>Order No.</th>
+              <th className={`text-nowrap ${styles['width-120']}`}>Delivery Date</th>
+              <th
+                role='button'
+                className={`text-nowrap ${styles['width-200']}`}
+                onClick={() => toggleTableSort('customer')}
+              >
+                Customer
+                <SortButton
+                  sortingType={sortingType}
+                  sortTypeName={'customer'}
+                  onClick={(e) => {
+                    e.stopPropagation() // Prevents the click event from propagating to the parent element
+                    toggleTableSort('customer')
+                  }}
+                />
+              </th>
+              <th
+                role='button'
+                className={`text-nowrap ${styles['width-200']}`}
+                onClick={() => toggleTableSort('trackingNo')}
+              >
+                Tracking No.
+                <SortButton
+                  sortingType={sortingType}
+                  sortTypeName={'trackingNo'}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    toggleTableSort('trackingNo')
+                  }}
+                />
+              </th>
+              <th
+                role='button'
+                className={`text-nowrap ${styles['width-80']}`}
+                onClick={() => toggleTableSort('status')}
+              >
+                Status
+                <SortButton
+                  sortingType={sortingType}
+                  sortTypeName={'status'}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    toggleTableSort('status')
+                  }}
+                />
+              </th>
+              <th
+                role='button'
+                className={`text-nowrap ${styles['width-200']}`}
+                onClick={() => toggleTableSort('consignee')}
+              >
+                Consignee
+                <SortButton
+                  sortingType={sortingType}
+                  sortTypeName={'consignee'}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    toggleTableSort('consignee')
+                  }}
+                />
+              </th>
+              <th className={styles['width-80']}>{/* Actions / Buttons column */}</th>
             </tr>
-          )}
-          {currentItems?.map((item) => (
-            <TableItemRow
-              key={item.orderNo}
-              item={item}
-              handleSelectToDelete={handleSelectToDelete}
-            />
-          ))}
-        </tbody>
-      </Table>
+          </thead>
 
-      <Pagination className='my-3 d-flex justify-content-center'>
+          {/* Filtered + Paginated Thunk data */}
+          <tbody>
+            {/* No data */}
+            {!currentItems.length && (
+              <tr>
+                <td className='border-0 bg-transparent text-nowrap'>
+                  <h4>No items to display</h4>
+                </td>
+              </tr>
+            )}
+            {/* Data */}
+            {currentItems?.map((item) => (
+              <TableItemRow
+                key={item.orderNo}
+                item={item}
+                handleSelectToDelete={handleSelectToDelete}
+              />
+            ))}
+          </tbody>
+        </Table>
+      </TableDataContainer>
+
+      <Pagination>
         {/* Prev */}
         <PaginationItem>
           <PaginationLink onClick={() => handlePageChange(currentPage - 1)} previous />
@@ -164,7 +172,9 @@ const ShipmentsTable = () => {
           </PaginationItem>
         ))}
         {/* Next */}
-        <PaginationLink onClick={() => handlePageChange(currentPage + 1)} next />
+        <PaginationItem>
+          <PaginationLink onClick={() => handlePageChange(currentPage + 1)} next />
+        </PaginationItem>
       </Pagination>
 
       <ConfirmDeleteModal
@@ -192,3 +202,16 @@ export default ShipmentsTable
 // v2. RTK Query data version
 // const { data: shipmentsRTKQueryData, isLoading, error } = useGetShipmentsDataQuery()
 // {shipmentsRTKQueryData?.map
+
+const TableDataContainer = ({
+  children,
+  dataLength,
+}: {
+  children: React.ReactNode
+  dataLength: number
+}) => {
+  const style = `${styles.tableDataContainer} ${dataLength === 0 ? styles.empty : ''}`
+  // const styleV2 = [styles.tableDataContainer, dataLength === 0 ? styles.empty : ''].join(' ')
+
+  return <div className={style}>{children}</div>
+}

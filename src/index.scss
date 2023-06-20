@@ -33,6 +33,13 @@ html {
   display: block !important; // match other inputs on Details page
 }
 
+// Pagination
+.pagination {
+  margin: 1rem 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 // Mock Cards & Charts
 .card-list {
   height: 340px;
