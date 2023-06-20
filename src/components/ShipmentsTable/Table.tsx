@@ -100,7 +100,7 @@ const ShipmentsTable = () => {
               />
             </th>
             <th
-              className={`text-nowrap pointer ${styles['width-120']}`}
+              className={`text-nowrap pointer ${styles['width-80']}`}
               onClick={() => toggleTableSort('status')}
             >
               Status
