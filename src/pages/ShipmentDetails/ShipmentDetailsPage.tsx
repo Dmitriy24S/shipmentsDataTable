@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Breadcrumb, BreadcrumbItem } from 'reactstrap'
+import { Breadcrumb, BreadcrumbItem, Container } from 'reactstrap'
 
 import ShipmentDetails from '../../components/ShipmentDetails/ShipmentDetails'
 
@@ -16,10 +16,10 @@ const ShipmentDetailsBreadcrumb = () => {
 
 const ShipmentDetailsPage = () => {
   return (
-    <>
+    <Container fluid='lg'>
       <ShipmentDetailsBreadcrumb />
       <ShipmentDetails />
-    </>
+    </Container>
   )
 }
 

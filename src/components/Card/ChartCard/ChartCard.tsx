@@ -13,6 +13,8 @@ import {
   UncontrolledTooltip,
 } from 'reactstrap'
 
+import styles from '../Card.module.scss'
+
 interface Props {
   category: string
   title: string
@@ -24,11 +26,11 @@ const ChartCard = ({ category, title, children }: Props) => {
 
   return (
     <Col xs={12} md={6}>
-      <Card className='card-chart'>
+      <Card className={styles.card}>
         <CardHeader>
           <h5 className='card-category'>{category}</h5>
           <CardTitle tag='h4'>{title}</CardTitle>
-          <UncontrolledDropdown id={chartId}>
+          <UncontrolledDropdown id={chartId} className={styles.dropdown}>
             <DropdownToggle className='px-1 py-0 focus-ring' color='default'>
               <CgOptions size={22} />
             </DropdownToggle>
@@ -45,9 +47,7 @@ const ChartCard = ({ category, title, children }: Props) => {
         </CardHeader>
         <CardBody>{children}</CardBody>
         <CardFooter>
-          <div className='stats'>
-            <i className='now-ui-icons arrows-1_refresh-69' /> Just Updated
-          </div>
+          <div className='stats'>Just Updated</div>
         </CardFooter>
       </Card>
     </Col>

@@ -41,7 +41,7 @@ function App() {
     <>
       <Navbar />
       <Toaster />
-      <Container className='py-5 text-secondary'>
+      <Container as={'main'} fluid='lg' className='py-5 text-secondary'>
         {status === 'loading' ? (
           <Loader />
         ) : (

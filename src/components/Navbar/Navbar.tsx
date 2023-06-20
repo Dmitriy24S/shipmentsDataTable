@@ -15,7 +15,7 @@ import styles from './Navbar.module.scss'
 const NavbarComponent = () => {
   return (
     <Navbar bg='light' expand={'lg'}>
-      <Container>
+      <Container fluid='lg'>
         <Link to='/'>
           <Navbar.Brand>
             <img width='150' height='30' src='/logo.svg' alt='Kühne + Nagel logo' />
@@ -23,7 +23,7 @@ const NavbarComponent = () => {
         </Link>
         <Navbar.Toggle
           aria-controls={`offcanvasNavbar-expand-lg`}
-          className='focus-ring'
+          className='focus-ring me-0'
         />
         <Navbar.Offcanvas
           id={`offcanvasNavbar-expand-lg`}

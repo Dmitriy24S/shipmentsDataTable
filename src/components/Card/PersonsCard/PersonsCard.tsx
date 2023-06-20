@@ -1,13 +1,15 @@
 import { Card, CardBody, CardHeader, CardTitle, Col, Table } from 'reactstrap'
 
+import styles from '../Card.module.scss'
+
 const PersonsCard = () => {
   return (
     <Col xs={12} md={6}>
-      <Card className='card-list'>
+      <Card className={`${styles.card} ${styles.listCard}`}>
         <CardHeader>
           <CardTitle tag='h4'>Employees Stats</CardTitle>
         </CardHeader>
-        <CardBody>
+        <CardBody className={styles.body}>
           <Table responsive>
             <thead className='text-primary'>
               <tr>

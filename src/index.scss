@@ -3,10 +3,6 @@ html {
   scrollbar-gutter: stable; // prevent page content shift (e.g. from Table page -> open Details page with no scrollbar = page content shifts)
 }
 
-.pointer {
-  cursor: pointer;
-}
-
 // Toast - prevent Toast notification position shift as Bootstrap Modal closes
 .modal {
   overflow-y: auto !important;
@@ -38,36 +34,4 @@ html {
   margin: 1rem 0;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-// Mock Cards & Charts
-.card-list {
-  height: 340px;
-  .card-body {
-    overflow-y: auto;
-    overscroll-behavior: contain;
-  }
-}
-
-.card-chart {
-  margin-bottom: 1.5rem;
-  .dropdown {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-  }
-}
-
-.spin {
-  transform-origin: center;
-  animation: spin 1.5s linear infinite;
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(-360deg);
-    }
-  }
 }

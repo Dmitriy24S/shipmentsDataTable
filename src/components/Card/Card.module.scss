@@ -1,0 +1,29 @@
+.card {
+  margin-bottom: 1.5rem;
+  .dropdown {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+}
+
+.listCard {
+  height: 340px;
+  .body {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+.spin {
+  transform-origin: center;
+  animation: spin 1.5s linear infinite;
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+}

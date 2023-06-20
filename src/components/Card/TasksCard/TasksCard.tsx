@@ -21,6 +21,8 @@ import {
   UncontrolledTooltip,
 } from 'reactstrap'
 
+import styles from '../Card.module.scss'
+
 const tasks = [
   {
     id: 1,
@@ -53,11 +55,11 @@ const TasksCard = () => {
 
   return (
     <Col xs={12} md={6}>
-      <Card className='card-tasks card-list'>
+      <Card className={`${styles.card} ${styles.listCard}`}>
         <CardHeader>
           <CardTitle tag='h4'>Tasks</CardTitle>
         </CardHeader>
-        <CardBody>
+        <CardBody className={styles.body}>
           <div className='table-full-width table-responsive'>
             <Table>
               <tbody>
@@ -117,7 +119,7 @@ const TasksCard = () => {
               onClick={toggleUpdate}
               className='p-0 bg-transparent border-0 text-secondary me-1'
             >
-              <TbRefresh size={16} className={`${spinningUpdate ? 'spin' : ''}`} />
+              <TbRefresh size={16} className={`${spinningUpdate ? styles.spin : ''}`} />
             </Button>
             Updated 3 minutes ago
           </div>
